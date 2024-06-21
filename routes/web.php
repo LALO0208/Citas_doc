@@ -25,3 +25,14 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::middleware(['checkrole:administrador'])->group(function () {
+    Route::get('/IndexAdmin', function () {
+        return Inertia::render('Admin/index');
+    })->name('IndexAdmin');
+});
+Route::middleware(['checkrole:doctor'])->group(function () {
+    Route::get('/IndexDoctor', function () {
+        return Inertia::render('Doctor/index');
+    })->name('IndexDoctor');
+});
